@@ -36,14 +36,6 @@ struct ContentView: View {
                     print("Tapped")
                 }label:{
                     
-                    buttonActionView(text: "Tap me")
-                   
-                }
-                Spacer()
-                Button{
-                    print("Tapped")
-                }label:{
-                    
                     buttonActionView(text: "Prime")
                    
                 }
@@ -55,6 +47,15 @@ struct ContentView: View {
                     buttonActionView(text: "Not Prime")
                    
                 }
+                Spacer()
+               
+                Image(systemName: "checkmark.rectangle.fill")
+                    .symbolRenderingMode(.monochrome)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .foregroundColor(.white)
+                    .background(.green)
+                    .frame(width: 100, height: 100)
                 Spacer()
                 
             }
