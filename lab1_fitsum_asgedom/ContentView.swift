@@ -10,13 +10,14 @@ import SwiftUI
 struct ContentView: View {
     @State private var number = Int.random(in: 1...100)
        @State private var correct = 0
-//       @State private var wrong = 0
-//       @State private var attempts = 0
-//
-//       @State private var resultSymbol = ""
-//       @State private var showDialog = false
-    
+       @State private var wrong = 0
+       @State private var attempts = 0
 
+       @State private var resultSymbol = ""
+       @State private var showDialog = false
+    
+        @State private var timeRemaining: Int = 5
+    let timer = Timer.publish(every: 1,on: .main,in: .common).autoconnect()
         
     var body: some View {
         
@@ -31,16 +32,16 @@ struct ContentView: View {
                                .foregroundColor(.white)
                                .padding()
                 
-                Text("Time Left: \(number)")
+                Text("Time Left: \(timeRemaining)")
                                .font(.system(size:20))
-                               .foregroundColor(.red)
+                               .foregroundColor(.white)
                                .frame(width:160,height: 30)
-                               .background()
+                               .background(.gray)
                                .padding()
                 
                 Spacer()
                 Button{
-                    print("Tapped")
+                    checkAnswer(userPrime: true)
                 }label:{
                     
                     buttonActionView(text: "Prime")
@@ -70,6 +71,15 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
+}
+
+func checkAnswer(userPrime: Bool){
+    let actualPrime = isPrime(number)
+    if userPrime == actualPrime{
+        correct += 1
+        showRe
+    }
+    number = Int.random(in: 1...100)
 }
 
 struct buttonActionView:View{
@@ -102,3 +112,4 @@ struct resultImage: View {
             .frame(width: 100, height: 100)
     }
 }
+
