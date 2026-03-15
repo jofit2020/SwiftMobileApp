@@ -49,13 +49,9 @@ struct ContentView: View {
                 }
                 Spacer()
                
-                Image(systemName: "checkmark.rectangle.fill")
-                    .symbolRenderingMode(.monochrome)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .foregroundColor(.white)
-                    .background(.green)
-                    .frame(width: 100, height: 100)
+                resultImage(imageName: "checkmark.rectangle.fill")
+                
+            
                 Spacer()
                 
             }
@@ -84,5 +80,18 @@ struct buttonActionView:View{
             .overlay(
                 RoundedRectangle(cornerRadius: 10).stroke(.orange, lineWidth: 3)
                 )
+    }
+}
+
+struct resultImage: View {
+    var imageName:String
+    var body: some View {
+        Image(systemName: imageName)
+            .symbolRenderingMode(.monochrome)
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+            .foregroundColor(.white)
+            .background(.green)
+            .frame(width: 100, height: 100)
     }
 }
