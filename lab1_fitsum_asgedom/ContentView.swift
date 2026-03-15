@@ -31,6 +31,13 @@ struct ContentView: View {
                                .foregroundColor(.white)
                                .padding()
                 
+                Text("Time Left: \(number)")
+                               .font(.system(size:20))
+                               .foregroundColor(.red)
+                               .frame(width:160,height: 30)
+                               .background()
+                               .padding()
+                
                 Spacer()
                 Button{
                     print("Tapped")
