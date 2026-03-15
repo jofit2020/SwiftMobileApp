@@ -8,6 +8,16 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var number = Int.random(in: 1...100)
+       @State private var correct = 0
+       @State private var wrong = 0
+       @State private var attempts = 0
+       
+       @State private var resultSymbol = ""
+       @State private var showDialog = false
+    
+
+        
     var body: some View {
         
         ZStack{
@@ -15,6 +25,13 @@ struct ContentView: View {
                 .ignoresSafeArea(edges: .all)
                 
             VStack{
+                
+                Text("\(number)")
+                               .font(.system(size:70))
+                               .foregroundColor(.white)
+                               .padding()
+                
+                Spacer()
                 Button{
                     print("Tapped")
                 }label:{
