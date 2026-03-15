@@ -10,11 +10,11 @@ import SwiftUI
 struct ContentView: View {
     @State private var number = Int.random(in: 1...100)
        @State private var correct = 0
-       @State private var wrong = 0
-       @State private var attempts = 0
-       
-       @State private var resultSymbol = ""
-       @State private var showDialog = false
+//       @State private var wrong = 0
+//       @State private var attempts = 0
+//
+//       @State private var resultSymbol = ""
+//       @State private var showDialog = false
     
 
         
