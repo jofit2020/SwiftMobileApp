@@ -9,16 +9,62 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        
+        ZStack{
+            LinearGradient(gradient: Gradient(colors: [.blue, Color("lightBlue")]), startPoint: .topLeading, endPoint: .bottomTrailing)
+                .ignoresSafeArea(edges: .all)
+                
+            VStack{
+                Button{
+                    print("Tapped")
+                }label:{
+                    
+                    buttonActionView(text: "Tap me")
+                   
+                }
+                Spacer()
+                Button{
+                    print("Tapped")
+                }label:{
+                    
+                    buttonActionView(text: "Prime")
+                   
+                }
+                Spacer()
+                Button{
+                    print("Tapped")
+                }label:{
+                    
+                    buttonActionView(text: "Not Prime")
+                   
+                }
+                Spacer()
+                
+            }
+            .padding()
         }
-        .padding()
+       
     }
 }
 
 #Preview {
     ContentView()
+}
+
+struct buttonActionView:View{
+    
+    var text: String
+    
+    var body: some View{
+        
+        Text(text)
+            .font(.system(size: 30, weight: .bold, design:.default))
+            .frame(width: 300, height:60, alignment: .init(horizontal: .center, vertical: .center))
+            .foregroundColor(.blue)
+            .background(.white)
+            .cornerRadius(10)
+            .overlay(
+                RoundedRectangle(cornerRadius: 10).stroke(.orange, lineWidth: 3)
+                )
+    }
 }
