@@ -8,16 +8,18 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var number = Int.random(in: 1...100)
+       @State private var number = Int.random(in: 1...100)
        @State private var correct = 0
        @State private var wrong = 0
        @State private var attempts = 0
 
        @State private var resultSymbol = ""
        @State private var showDialog = false
+       @State private var timeRemaining: Int = 5
     
-        @State private var timeRemaining: Int = 5
-
+       @State private var resultImageName=""
+       @State private var resultColor: Color = .clear
+    
     var body: some View {
         
         ZStack{
@@ -50,7 +52,7 @@ struct ContentView: View {
                 }
                 Spacer()
                 Button{
-                    
+                    checkAnswer(userPrime:false)
                 }label:{
                     
                     buttonActionView(text: "Not Prime")
@@ -58,6 +60,9 @@ struct ContentView: View {
                 }
                 Spacer()
                
+                if !resultImageName.isEmpty{
+                    
+                }
                 resultImage(imageName: "checkmark.rectangle.fill")
                 Text(resultSymbol)
                                .font(.system(size:80))
