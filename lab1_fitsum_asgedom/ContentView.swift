@@ -69,8 +69,7 @@ struct ContentView: View {
                 Text(resultSymbol)
                     .font(.system(size:40)).foregroundColor(.brown)
                            
-                Text("Correct: \(correct)")
-                Text("Wrong: \(wrong)")
+              
             
                 Spacer()
                 
