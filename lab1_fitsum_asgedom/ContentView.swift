@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-internal import Combine
+import Combine
 
 struct ContentView: View {
        @State private var number = Int.random(in: 1...100)
@@ -64,12 +64,12 @@ struct ContentView: View {
                
                 if !resultImageName.isEmpty{
                     
-                    resultImage(imageName: "checkmark.rectangle.fill",bgColor: .green)
+                    resultImage(imageName: resultImageName,bgColor: resultColor)
                 }
                 Text(resultSymbol)
-                               .font(.system(size:80))
+                               .font(.system(size:40))
                            
-                           Text("Correct: \(correct)")
+                Text("Correct: \(correct)")
                            Text("Wrong: \(wrong)")
             
                 Spacer()
@@ -77,10 +77,10 @@ struct ContentView: View {
             }
             .padding()
         }
-        .onReceive(timer){
-            _ in attempts < 10 {
-                timeRemaining -=1
-                if timeRemaining == 0{
+        .onReceive(timer) { _ in
+            if attempts < 10 {
+                timeRemaining -= 1
+                if timeRemaining == 0 {
                     timeout()
                 }
             }
@@ -93,7 +93,79 @@ struct ContentView: View {
         }
        
     }
-}
+    func checkAnswer(userPrime: Bool) {
+            let prime = isPrime(number)
+
+            if prime == userPrime {
+                resultSymbol = "Correct!"
+                resultImageName = "checkmark.rectangle.fill"
+                resultColor = .green
+                correct += 1
+            } else {
+                resultSymbol = "Wrong!"
+                resultImageName = "xmark.rectangle.fill"
+                resultColor = .red
+                wrong += 1
+            }
+
+            attempts += 1
+            checkAttempts()
+
+            if !showDialog {
+                nextNumber()
+                timeRemaining = 5
+            }
+        }
+
+        func timeout() {
+            wrong += 1
+            resultSymbol = "Time's up!"
+            resultImageName = "xmark.rectangle.fill"
+            resultColor = .red
+            attempts += 1
+            checkAttempts()
+
+            if !showDialog {
+                nextNumber()
+                timeRemaining = 5
+            }
+        }
+
+        func nextNumber() {
+            number = Int.random(in: 1...100)
+        }
+
+        func checkAttempts() {
+            if attempts == 10 {
+                showDialog = true
+            }
+        }
+
+        func resetGame() {
+            number = Int.random(in: 1...100)
+            correct = 0
+            wrong = 0
+            attempts = 0
+            resultSymbol = ""
+            resultImageName = ""
+            resultColor = .clear
+            timeRemaining = 5
+        }
+
+        func isPrime(_ n: Int) -> Bool {
+            if n <= 1 { return false }
+            if n == 2 { return true }
+            if n % 2 == 0 { return false }
+
+            for i in 3...Int(Double(n).squareRoot()) {
+                if n % i == 0 {
+                    return false
+                }
+            }
+            return true
+        }
+    }
+
 
 #Preview {
     ContentView()
