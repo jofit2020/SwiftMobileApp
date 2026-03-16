@@ -69,7 +69,8 @@ struct ContentView: View {
                 Text(resultSymbol)
                     .font(.system(size:40)).foregroundColor(.brown)
                            
-              
+                Text("Correct: \(correct)")
+                Text("Wrong: \(wrong)")
             
                 Spacer()
                 
@@ -179,7 +180,7 @@ struct buttonActionView:View{
         
         Text(text)
             .font(.system(size: 30, weight: .bold, design:.default))
-            .frame(width: 300, height:60, alignment: .init(horizontal: .center, vertical: .center))
+            .frame(width: 240, height:60, alignment: .init(horizontal: .center, vertical: .center))
             .foregroundColor(.blue)
             .background(.white)
             .cornerRadius(10)
