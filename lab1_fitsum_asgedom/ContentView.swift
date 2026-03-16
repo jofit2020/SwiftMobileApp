@@ -17,8 +17,7 @@ struct ContentView: View {
        @State private var showDialog = false
     
         @State private var timeRemaining: Int = 5
-    let timer = Timer.publish(every: 1,on: .main,in: .common).autoconnect()
-        
+
     var body: some View {
         
         ZStack{
@@ -40,8 +39,10 @@ struct ContentView: View {
                                .padding()
                 
                 Spacer()
+                
                 Button{
-                    checkAnswer(userPrime: true)
+                    checkAnswer(userPrime:true)
+                    
                 }label:{
                     
                     buttonActionView(text: "Prime")
@@ -49,7 +50,7 @@ struct ContentView: View {
                 }
                 Spacer()
                 Button{
-                    print("Tapped")
+                    
                 }label:{
                     
                     buttonActionView(text: "Not Prime")
@@ -58,7 +59,11 @@ struct ContentView: View {
                 Spacer()
                
                 resultImage(imageName: "checkmark.rectangle.fill")
-                
+                Text(resultSymbol)
+                               .font(.system(size:80))
+                           
+                           Text("Correct: \(correct)")
+                           Text("Wrong: \(wrong)")
             
                 Spacer()
                 
@@ -72,15 +77,7 @@ struct ContentView: View {
 #Preview {
     ContentView()
 }
-
-func checkAnswer(userPrime: Bool){
-    let actualPrime = isPrime(number)
-    if userPrime == actualPrime{
-        correct += 1
-        showRe
-    }
-    number = Int.random(in: 1...100)
-}
+    
 
 struct buttonActionView:View{
     
