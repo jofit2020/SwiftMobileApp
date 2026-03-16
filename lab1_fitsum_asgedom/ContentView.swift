@@ -152,7 +152,18 @@ struct ContentView: View {
             timeRemaining = 5
         }
 
-     
+        func isPrime(_ n: Int) -> Bool {
+            if n <= 1 { return false }
+            if n == 2 { return true }
+            if n % 2 == 0 { return false }
+
+            for i in 3...Int(Double(n).squareRoot()) {
+                if n % i == 0 {
+                    return false
+                }
+            }
+            return true
+        }
     }
 
 
