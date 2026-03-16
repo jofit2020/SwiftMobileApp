@@ -140,7 +140,7 @@ struct ContentView: View {
                 showDialog = true
             }
         }
-
+// func to reset the game
         func resetGame() {
             number = Int.random(in: 1...100)
             correct = 0
