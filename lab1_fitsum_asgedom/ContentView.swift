@@ -67,10 +67,10 @@ struct ContentView: View {
                     resultImage(imageName: resultImageName,bgColor: resultColor)
                 }
                 Text(resultSymbol)
-                               .font(.system(size:40))
+                    .font(.system(size:40)).foregroundColor(.brown)
                            
                 Text("Correct: \(correct)")
-                           Text("Wrong: \(wrong)")
+                Text("Wrong: \(wrong)")
             
                 Spacer()
                 
