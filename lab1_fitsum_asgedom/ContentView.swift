@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+internal import Combine
 
 struct ContentView: View {
        @State private var number = Int.random(in: 1...100)
@@ -19,6 +20,7 @@ struct ContentView: View {
     
        @State private var resultImageName=""
        @State private var resultColor: Color = .clear
+    let timer = Timer.publish(every: 1.0, on: .main, in: .common).autoconnect()
     
     var body: some View {
         
@@ -62,8 +64,8 @@ struct ContentView: View {
                
                 if !resultImageName.isEmpty{
                     
+                    resultImage(imageName: "checkmark.rectangle.fill",bgColor: .green)
                 }
-                resultImage(imageName: "checkmark.rectangle.fill")
                 Text(resultSymbol)
                                .font(.system(size:80))
                            
@@ -74,6 +76,20 @@ struct ContentView: View {
                 
             }
             .padding()
+        }
+        .onReceive(timer){
+            _ in attempts < 10 {
+                timeRemaining -=1
+                if timeRemaining == 0{
+                    timeout()
+                }
+            }
+        }.alert("Results ", isPresented: $showDialog){
+            Button("OK"){
+                resetGame()
+            }
+        } message: {
+            Text("Correct: \(correct)\nWrong: \(wrong)")
         }
        
     }
@@ -104,13 +120,14 @@ struct buttonActionView:View{
 
 struct resultImage: View {
     var imageName:String
+    var bgColor:Color
     var body: some View {
         Image(systemName: imageName)
             .symbolRenderingMode(.monochrome)
             .resizable()
             .aspectRatio(contentMode: .fit)
             .foregroundColor(.white)
-            .background(.green)
+            .background(bgColor)
             .frame(width: 100, height: 100)
     }
 }
