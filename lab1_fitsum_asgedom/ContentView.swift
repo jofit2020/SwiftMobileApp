@@ -185,7 +185,7 @@ struct buttonActionView:View{
             .background(.white)
             .cornerRadius(10)
             .overlay(
-                RoundedRectangle(cornerRadius: 10).stroke(.orange, lineWidth: 3)
+                RoundedRectangle(cornerRadius: 10).stroke(.black, lineWidth: 3)
                 )
     }
 }
