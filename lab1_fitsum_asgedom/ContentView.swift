@@ -72,7 +72,7 @@ struct ContentView: View {
                 Text("Correct: \(correct)")
                 Text("Wrong: \(wrong)")
             
-            
+                Spacer()
                 
             }
             .padding()
